@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"> 
+    <title>Book Buyer</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Book Buyer</h1>
+        </div>
+        <div class="clicker">
+            <h2 id="pointTracker">0 Books</h2>
+            <button onclick="increasePoints ()" id="clickerbtn"><img src="NB-Book.png" alt="Blue Book" width="250px"></button>
+        </div>
+        <div class="store">
+           <h2>Resource Shelf</h2>
+           <div class="item">
+            <h3>Second Hand Book Store</h3>
+            <p class="boost">3 Books/second</p>
+            <button class="buybtn">__ Books</button>
+           </div>
+           <div class="item">
+            <h3>Retail Book Store</h3>
+            <p class="boost">10 Books/second</p>
+            <button class="buybtn">__ Books</button>
+           </div>
+           <div class="item">
+            <h3>Online Store</h3>
+            <p class="boost">100 Books/second</p>
+            <button class="buybtn">__ Books</button>
+           </div>
+        </div>
+      </div>
+
+      <script>
+        let points = 0
+        let pointTracker = document.getElementById("pointTracker")
+
+        function increasePoints () {
+            points = points + 1
+            pointTracker.innerText = points + ' Books'
+        }
+      </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+.container {  display: grid;
+    grid-template-columns: 1.3fr 0.7fr 1fr;
+    grid-template-rows: 0.2fr 0.6fr 2.2fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "header header header"
+      "clicker store store"
+      "clicker store store";
+    height: 100vh;
+  }
+  
+  .header { grid-area: header;
+    background-color: green; 
+    }
+  
+  .clicker { grid-area: clicker; 
+    background-color: aquamarine;
+    }
+  
+  .store { grid-area: store; 
+    background-color: blue;
+    }
+
+
+.item {
+    background-color: bisque;
+    width: 50%;
+    margin-left: 20%;
+    margin-bottom: 10px;
+    padding: 10px;
+    text-align: right;
+    border-radius: 5px;
+}
+
+h2 {
+    text-align: center;
+}
+
+.buybtn {
+    text-align: center;
+    width: 50%;
+    margin: auto;
+}
+
+#clickerbtn {
+    background-color: transparent;
+    border-width: 0px;
+}
+
+img {
+    margin: auto;
+}
