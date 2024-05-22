@@ -7,7 +7,7 @@
       "header header header"
       "clicker store store"
       "clicker store store";
-    height: 100vh;
+    height: 200vh;
   }
   
   .header { grid-area: header;
@@ -34,20 +34,45 @@
 }
 
 h2 {
-    text-align: center;
+  text-align: center;
 }
 
-.buybtn {
-    text-align: center;
-    width: 50%;
-    margin: auto;
+body {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.options {
+  height: 400px;
+  overflow-y: scroll;
+  border-width: 10px;
+  border-color: red;
+}
+
+.icon {
+  float: left;
+}
+
+.itembtn {
+  background-color: transparent;
+  border-width: 0px;
+  margin: auto;
+  width: 100%;
+}
+
+.itembtn div {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.itembtn div:hover {
+  background-color: red;
 }
 
 #clickerbtn {
-    background-color: transparent;
-    border-width: 0px;
+  background-color: transparent;
+  border-width: 0px;
+  margin-left: auto;
 }
 
-img {
-    margin: auto;
+button img {
+ margin: auto;
 }

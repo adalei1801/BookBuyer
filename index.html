@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="style.css">
     <title>Book Buyer</title>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
@@ -14,36 +16,125 @@
         </div>
         <div class="clicker">
             <h2 id="pointTracker">0 Books</h2>
-            <button onclick="increasePoints ()" id="clickerbtn"><img src="NB-Book.png" alt="Blue Book" width="250px"></button>
+            <button onclick="increasePoints ()" id="clickerbtn"><img src="images/NB-Book.png" alt="Blue Book"
+                    width="250px"></button>
         </div>
         <div class="store">
-           <h2>Resource Shelf</h2>
-           <div class="item">
-            <h3>Second Hand Book Store</h3>
-            <p class="boost">3 Books/second</p>
-            <button class="buybtn">__ Books</button>
-           </div>
-           <div class="item">
-            <h3>Retail Book Store</h3>
-            <p class="boost">10 Books/second</p>
-            <button class="buybtn">__ Books</button>
-           </div>
-           <div class="item">
-            <h3>Online Store</h3>
-            <p class="boost">100 Books/second</p>
-            <button class="buybtn">__ Books</button>
-           </div>
+            <h2>Resource Shelf</h2>
+            <div class="options">
+            <button onclick="takeTrip ()" class="itembtn">
+                <div class="item">
+                    <div class="icon">
+                    <img src="images/NB-Book.png" alt="Blue Book"
+                    width="100px">
+                    </div>
+                    <h3>Library</h3>
+                    <p class="boost">1 Book/second</p>
+                    <p id="libTrip">0 Trips Taken</p>
+                    <p>Cost: 10 Books</p>
+                </div>
+            </button>
+            <button onclick="takeShsTrip ()" class="itembtn">
+                <div class="item">
+                    <div class="icon">
+                        <img src="images/NB-Book.png" alt="Blue Book"
+                        width="100px">
+                        </div>
+                    <h3>Second Hand Book Store</h3>
+                    <p class="boost">3 Books/second</p>
+                    <p id="shsTrip">0 Trips Taken</p>
+                    <p>Cost: 20 Books</p>
+                </div>
+            </button>
+            <button onclick="takeRbsTrip ()" class="itembtn">
+                <div class="item">
+                    <div class="icon">
+                        <img src="images/NB-Book.png" alt="Blue Book"
+                        width="100px">
+                        </div>
+                    <h3>Retail Book Store</h3>
+                    <p class="boost">10 Books/second</p>
+                    <p id="rbsTrip">0 Trips Taken</p>
+                    <p>Cost: 30 Books</p>
+                </div>
+            </button>
+            <button onclick="buyOnline ()" class="itembtn">
+                <div class="item">
+                    <div class="icon">
+                        <img src="images/NB-Book.png" alt="Blue Book"
+                        width="100px">
+                        </div>
+                    <h3>Online Store</h3>
+                    <p class="boost">100 Books/second</p>
+                    <p id="onlineShop">0 Books Bought</p>
+                    <p>Cost: 40 Books</p>
+                </div>
+            </button>
+            </div>
         </div>
-      </div>
+    </div>
 
-      <script>
+    <script>
         let points = 0
         let pointTracker = document.getElementById("pointTracker")
+        let trips = 0
+        let libTrip = document.getElementById("libTrip")
+        let shsTrips = 0
+        let shsTrip = document.getElementById("shsTrip")
+        let rbsTrips = 0 
+        let rbsTrip = document.getElementById("rbsTrip")
+        let onlineBooks = 0
+        let onlineShop = document.getElementById("onlineShop")
 
-        function increasePoints () {
+        function increasePoints() {
             points = points + 1
             pointTracker.innerText = points + ' Books'
         }
-      </script>
+
+        function takeTrip() {
+            if (points >= 10) {
+                points = points - 10
+                pointTracker.innerText = points + ' Books'
+                trips = trips + 1
+                libTrip.innerText = trips + ' Trips Taken'
+            } else {
+                alert("You do not have enough books")
+            }
+        }
+
+        function takeShsTrip () {
+            if (points >= 20) {
+                points = points - 20
+                pointTracker.innerText = points + ' Books'
+                shsTrips = shsTrips + 1
+                shsTrip.innerText = shsTrips + ' Trips Taken'
+            } else {
+                alert("You do not have enough books")
+            }
+        }
+
+        function takeRbsTrip () {
+            if (points >= 30) {
+                points = points - 30 
+                pointTracker.innerText = points + ' Books'
+                rbsTrips = rbsTrips + 1
+                rbsTrip.innerText = rbsTrips + ' Trips Taken'
+            } else {
+                alert("You do not have enough books")
+            }
+        }
+
+        function buyOnline () {
+            if (points >= 40) {
+                points = points - 40
+                pointTracker.innerText = points + ' Books'
+                onlineBooks = onlineBooks + 1
+                onlineShop.innerText = onlineBooks + ' Books Bought'
+            } else {
+                alert("You do not have enough books")
+            }
+        }
+    </script>
 </body>
+
 </html>
