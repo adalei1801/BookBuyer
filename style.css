@@ -11,20 +11,21 @@
   }
   
   .header { grid-area: header;
-    background-color: green; 
+    background-color: #102542; 
     }
   
   .clicker { grid-area: clicker; 
-    background-color: aquamarine;
+    background-color: #118AB2;
     }
   
   .store { grid-area: store; 
-    background-color: blue;
+    background-color: #0C8346;
+    border-left: black;
     }
 
 
 .item {
-    background-color: bisque;
+    background-color: #E1D9B5;
     width: 50%;
     margin-left: 20%;
     margin-bottom: 10px;
@@ -64,7 +65,7 @@ body {
 }
 
 .itembtn div:hover {
-  background-color: red;
+  background-color: bisque;
 }
 
 #clickerbtn {

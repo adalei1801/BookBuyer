@@ -22,6 +22,17 @@
         <div class="store">
             <h2>Resource Shelf</h2>
             <div class="options">
+                <button onclick="moreBooks ()" class="itembtn">
+                    <div class="item">
+                    <div class="icon">
+                        <img src="images/NB-Book.png" alt="Blue Book"
+                    width="100px">
+                    </div>
+                    <h3>Books per Click</h3>
+                    <p id="extraBooks">0 Extra Books</p>
+                    <p>Cost: 5 Books</p>
+                    </div>
+                </button>
             <button onclick="takeTrip ()" class="itembtn">
                 <div class="item">
                     <div class="icon">
@@ -65,7 +76,7 @@
                         width="100px">
                         </div>
                     <h3>Online Store</h3>
-                    <p class="boost">100 Books/second</p>
+                    <p class="boost">50 Books/second</p>
                     <p id="onlineShop">0 Books Bought</p>
                     <p>Cost: 40 Books</p>
                 </div>
@@ -77,6 +88,8 @@
     <script>
         let points = 0
         let pointTracker = document.getElementById("pointTracker")
+        let clickBooks = 0
+        let extraBooks = document.getElementById("extraBooks")
         let trips = 0
         let libTrip = document.getElementById("libTrip")
         let shsTrips = 0
@@ -134,6 +147,13 @@
                 alert("You do not have enough books")
             }
         }
+
+        function pointLoop () {
+            points = points + (1 * trips) + (3 * shsTrips) + (10 * rbsTrips) + (50 * onlineBooks)
+            pointTracker.innerText = points + ' Books'
+        }
+
+        setInterval(pointLoop, 1000)
     </script>
 </body>
 
