@@ -36,11 +36,11 @@
             <button onclick="takeTrip ()" class="itembtn">
                 <div class="item">
                     <div class="icon">
-                    <img src="images/NB-Book.png" alt="Blue Book"
+                    <img src="images/Library.png" alt="Blue Book"
                     width="100px">
                     </div>
                     <h3>Library</h3>
-                    <p class="boost">1 Book/second</p>
+                    <p id="libSec">1 Book/second</p>
                     <p id="libTrip">0 Trips Taken</p>
                     <p>Cost: 10 Books</p>
                 </div>
@@ -48,11 +48,11 @@
             <button onclick="takeShsTrip ()" class="itembtn">
                 <div class="item">
                     <div class="icon">
-                        <img src="images/NB-Book.png" alt="Blue Book"
+                        <img src="images/Second Hand Book Store.png" alt="Blue Book"
                         width="100px">
                         </div>
                     <h3>Second Hand Book Store</h3>
-                    <p class="boost">3 Books/second</p>
+                    <p id="shsSec">3 Books/second</p>
                     <p id="shsTrip">0 Trips Taken</p>
                     <p>Cost: 20 Books</p>
                 </div>
@@ -60,11 +60,11 @@
             <button onclick="takeRbsTrip ()" class="itembtn">
                 <div class="item">
                     <div class="icon">
-                        <img src="images/NB-Book.png" alt="Blue Book"
+                        <img src="images/Retail Book Store.png" alt="Blue Book"
                         width="100px">
                         </div>
                     <h3>Retail Book Store</h3>
-                    <p class="boost">10 Books/second</p>
+                    <p id="rbSec">10 Books/second</p>
                     <p id="rbsTrip">0 Trips Taken</p>
                     <p>Cost: 30 Books</p>
                 </div>
@@ -72,11 +72,11 @@
             <button onclick="buyOnline ()" class="itembtn">
                 <div class="item">
                     <div class="icon">
-                        <img src="images/NB-Book.png" alt="Blue Book"
+                        <img src="images/Laptop.png" alt="Blue Book"
                         width="100px">
                         </div>
                     <h3>Online Store</h3>
-                    <p class="boost">50 Books/second</p>
+                    <p id="onlineSec">50 Books/second</p>
                     <p id="onlineShop">0 Books Bought</p>
                     <p>Cost: 40 Books</p>
                 </div>
@@ -102,6 +102,21 @@
         function increasePoints() {
             points = points + 1
             pointTracker.innerText = points + ' Books'
+            if (clickBooks > 0) {
+                points =  points + clickBooks
+                pointTracker.innerText = points + ' Books'
+            }
+        }
+
+        function moreBooks () {
+            if (points >= 5) {
+                points = points - 5
+                pointTracker.innerText = points + ' Books'
+                clickBooks = clickBooks + 1
+                extraBooks.innerText = clickBooks + ' Extra Books'
+            } else {
+                alert("You do not have enough books")
+            }
         }
 
         function takeTrip() {

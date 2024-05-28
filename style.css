@@ -7,19 +7,20 @@
       "header header header"
       "clicker store store"
       "clicker store store";
-    height: 200vh;
+    height: 100vh;
   }
   
   .header { grid-area: header;
-    background-color: #102542; 
+    background-color: #0090c1; 
     }
   
   .clicker { grid-area: clicker; 
-    background-color: #118AB2;
+    background-color: #B8E1FF;
+    text-align: center;
     }
   
   .store { grid-area: store; 
-    background-color: #0C8346;
+    background-color: #4c9ff8;
     border-left: black;
     }
 
@@ -34,6 +35,11 @@
     border-radius: 5px;
 }
 
+h1 {
+  text-align: center;
+  margin-top: 20px;
+}
+
 h2 {
   text-align: center;
 }
@@ -46,7 +52,6 @@ body {
   height: 400px;
   overflow-y: scroll;
   border-width: 10px;
-  border-color: red;
 }
 
 .icon {
@@ -68,10 +73,18 @@ body {
   background-color: bisque;
 }
 
+.itembtn:active {
+  transform: scale(0.9);
+}
+
 #clickerbtn {
   background-color: transparent;
   border-width: 0px;
   margin-left: auto;
+}
+
+#clickerbtn:active {
+  transform: scale(0.7);
 }
 
 button img {
