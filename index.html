@@ -22,7 +22,7 @@
         <div class="store">
             <h2>Resource Shelf</h2>
             <div class="options">
-                <button onclick="moreBooks ()" class="itembtn">
+                <button onclick="moreBooks ()" class="itembtn" id="clickBookBtn">
                     <div class="item">
                     <div class="icon">
                         <img src="images/NB-Book.png" alt="Blue Book"
@@ -30,10 +30,10 @@
                     </div>
                     <h3>Books per Click</h3>
                     <p id="extraBooks">0 Extra Books</p>
-                    <p>Cost: 5 Books</p>
+                    <p id="clickCost">Cost: 5 Books</p>
                     </div>
                 </button>
-            <button onclick="takeTrip ()" class="itembtn">
+            <button onclick="takeTrip ()" class="itembtn" id="libBtn">
                 <div class="item">
                     <div class="icon">
                     <img src="images/Library.png" alt="Blue Book"
@@ -42,10 +42,10 @@
                     <h3>Library</h3>
                     <p id="libSec">1 Book/second</p>
                     <p id="libTrip">0 Trips Taken</p>
-                    <p>Cost: 10 Books</p>
+                    <p id="libCost">Cost: 10 Books</p>
                 </div>
             </button>
-            <button onclick="takeShsTrip ()" class="itembtn">
+            <button onclick="takeShsTrip ()" class="itembtn" id="shsBtn">
                 <div class="item">
                     <div class="icon">
                         <img src="images/Second Hand Book Store.png" alt="Blue Book"
@@ -54,10 +54,10 @@
                     <h3>Second Hand Book Store</h3>
                     <p id="shsSec">3 Books/second</p>
                     <p id="shsTrip">0 Trips Taken</p>
-                    <p>Cost: 20 Books</p>
+                    <p id="shsCost">Cost: 20 Books</p>
                 </div>
             </button>
-            <button onclick="takeRbsTrip ()" class="itembtn">
+            <button onclick="takeRbsTrip ()" class="itembtn" id="rbsBtn">
                 <div class="item">
                     <div class="icon">
                         <img src="images/Retail Book Store.png" alt="Blue Book"
@@ -66,10 +66,10 @@
                     <h3>Retail Book Store</h3>
                     <p id="rbSec">10 Books/second</p>
                     <p id="rbsTrip">0 Trips Taken</p>
-                    <p>Cost: 30 Books</p>
+                    <p id="rbsCost">Cost: 30 Books</p>
                 </div>
             </button>
-            <button onclick="buyOnline ()" class="itembtn">
+            <button onclick="buyOnline ()" class="itembtn" id="onlineBtn">
                 <div class="item">
                     <div class="icon">
                         <img src="images/Laptop.png" alt="Blue Book"
@@ -78,7 +78,7 @@
                     <h3>Online Store</h3>
                     <p id="onlineSec">50 Books/second</p>
                     <p id="onlineShop">0 Books Bought</p>
-                    <p>Cost: 40 Books</p>
+                    <p id="onlineCost">Cost: 40 Books</p>
                 </div>
             </button>
             </div>
@@ -98,6 +98,11 @@
         let rbsTrip = document.getElementById("rbsTrip")
         let onlineBooks = 0
         let onlineShop = document.getElementById("onlineShop")
+        let clickCosts = document.getElementById("clickCost")
+        let libCosts = document.getElementById("libCost")
+        let shsCosts = document.getElementById("shsCost")
+        let rbcCosts = document.getElementById("rbsCost")
+        let onlineCosts = document.getElementById("onlineCost")
 
         function increasePoints() {
             points = points + 1
@@ -109,55 +114,65 @@
         }
 
         function moreBooks () {
-            if (points >= 5) {
-                points = points - 5
+            let clickCosts = 5 + clickBooks ** 2
+            if (points >= clickCosts) {
+                points = points - clickCosts
                 pointTracker.innerText = points + ' Books'
                 clickBooks = clickBooks + 1
                 extraBooks.innerText = clickBooks + ' Extra Books'
+                clickCost.innerText = "Cost: " + (5 + clickBooks ** 2) + " Books"
             } else {
                 alert("You do not have enough books")
             }
         }
 
         function takeTrip() {
-            if (points >= 10) {
+            let libCosts = 10 + trips ** 2
+            if (points >= libCosts) {
                 points = points - 10
                 pointTracker.innerText = points + ' Books'
                 trips = trips + 1
                 libTrip.innerText = trips + ' Trips Taken'
+                libCost.innerText = "Cost: " + (10 + trips ** 2) + " Books"
             } else {
                 alert("You do not have enough books")
             }
         }
 
         function takeShsTrip () {
-            if (points >= 20) {
-                points = points - 20
+            let shsCosts = 20 + shsTrips ** 2
+            if (points >= shsCosts) {
+                points = points - shsCosts
                 pointTracker.innerText = points + ' Books'
                 shsTrips = shsTrips + 1
                 shsTrip.innerText = shsTrips + ' Trips Taken'
+                shsCost.innerText = "Cost: " + (20 + shsTrips ** 2) + " Books"
             } else {
                 alert("You do not have enough books")
             }
         }
 
         function takeRbsTrip () {
-            if (points >= 30) {
-                points = points - 30 
+            let rbsCosts = 30 + rbsTrips ** 2
+            if (points >= rbsCosts) {
+                points = points - rbsCosts 
                 pointTracker.innerText = points + ' Books'
                 rbsTrips = rbsTrips + 1
                 rbsTrip.innerText = rbsTrips + ' Trips Taken'
+                rbsCost.innerText = "Costs: " + (30 + rbsTrips ** 2) + " Books"
             } else {
                 alert("You do not have enough books")
             }
         }
 
         function buyOnline () {
-            if (points >= 40) {
-                points = points - 40
+            let onlineCosts = 40 + onlineBooks ** 2
+            if (points >= onlineCosts) {
+                points = points - onlineCosts
                 pointTracker.innerText = points + ' Books'
                 onlineBooks = onlineBooks + 1
                 onlineShop.innerText = onlineBooks + ' Books Bought'
+                onlineCost.innerText = "Cost: " + (40 + onlineBooks ** 2) + " Books"
             } else {
                 alert("You do not have enough books")
             }
@@ -166,6 +181,36 @@
         function pointLoop () {
             points = points + (1 * trips) + (3 * shsTrips) + (10 * rbsTrips) + (50 * onlineBooks)
             pointTracker.innerText = points + ' Books'
+
+            if (points < 5 + clickBooks ** 2) {
+                document.getElementById("clickBookBtn").disabled = true;
+            } else {
+                document.getElementById("clickBookBtn").disabled = false;
+            }
+
+            if (points < 10 + trips ** 2) {
+                document.getElementById("libBtn").disabled = true;
+            } else {
+                document.getElementById("libBtn").disabled = false;
+            }
+
+            if (points < 20 + shsTrips ** 2) {
+                document.getElementById("shsBtn").disabled = true;
+            } else {
+                document.getElementById("shsBtn").disabled = false;
+            }
+
+            if (points < 30 + rbsTrips ** 2) {
+                document.getElementById("rbsBtn").disabled = true;
+            } else {
+                document.getElementById("rbsBtn").disabled = false;
+            }
+
+            if (points < 40 + onlineBooks ** 2) {
+                document.getElementById("onlineBtn").disabled = true;
+            } else {
+                document.getElementById("onlineBtn").disabled = false;
+            }
         }
 
         setInterval(pointLoop, 1000)
