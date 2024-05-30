@@ -26,9 +26,9 @@
                     <div class="item">
                     <div class="icon">
                         <img src="images/NB-Book.png" alt="Blue Book"
-                    width="100px">
+                    width="100px" id="iconImgBook">
                     </div>
-                    <h3>Books per Click</h3>
+                    <h3 id="extraBookTitle">Books per Click</h3>
                     <p id="extraBooks">0 Extra Books</p>
                     <p id="clickCost">Cost: 5 Books</p>
                     </div>
@@ -37,9 +37,9 @@
                 <div class="item">
                     <div class="icon">
                     <img src="images/Library.png" alt="Blue Book"
-                    width="100px">
+                    width="100px" id="iconImgLibrary">
                     </div>
-                    <h3>Library</h3>
+                    <h3 id="libTitle">Library</h3>
                     <p id="libSec">1 Book/second</p>
                     <p id="libTrip">0 Trips Taken</p>
                     <p id="libCost">Cost: 10 Books</p>
@@ -49,9 +49,9 @@
                 <div class="item">
                     <div class="icon">
                         <img src="images/Second Hand Book Store.png" alt="Blue Book"
-                        width="100px">
+                        width="100px" id="iconImgShs">
                         </div>
-                    <h3>Second Hand Book Store</h3>
+                    <h3 id="shsTitle">Second Hand Book Store</h3>
                     <p id="shsSec">3 Books/second</p>
                     <p id="shsTrip">0 Trips Taken</p>
                     <p id="shsCost">Cost: 20 Books</p>
@@ -61,10 +61,10 @@
                 <div class="item">
                     <div class="icon">
                         <img src="images/Retail Book Store.png" alt="Blue Book"
-                        width="100px">
+                        width="100px" id="iconImgRbs">
                         </div>
-                    <h3>Retail Book Store</h3>
-                    <p id="rbSec">10 Books/second</p>
+                    <h3 id="rbsTitle">Retail Book Store</h3>
+                    <p id="rbsSec">10 Books/second</p>
                     <p id="rbsTrip">0 Trips Taken</p>
                     <p id="rbsCost">Cost: 30 Books</p>
                 </div>
@@ -73,9 +73,9 @@
                 <div class="item">
                     <div class="icon">
                         <img src="images/Laptop.png" alt="Blue Book"
-                        width="100px">
+                        width="100px" id="iconImgOnline">
                         </div>
-                    <h3>Online Store</h3>
+                    <h3 id="onlineTitle">Online Store</h3>
                     <p id="onlineSec">50 Books/second</p>
                     <p id="onlineShop">0 Books Bought</p>
                     <p id="onlineCost">Cost: 40 Books</p>
@@ -101,7 +101,7 @@
         let clickCosts = document.getElementById("clickCost")
         let libCosts = document.getElementById("libCost")
         let shsCosts = document.getElementById("shsCost")
-        let rbcCosts = document.getElementById("rbsCost")
+        let rbsCosts = document.getElementById("rbsCost")
         let onlineCosts = document.getElementById("onlineCost")
 
         function increasePoints() {
@@ -184,36 +184,44 @@
 
             if (points < 5 + clickBooks ** 2) {
                 document.getElementById("clickBookBtn").disabled = true;
+                document.getElementById("iconImgBook").src = "images/lock.png"
             } else {
                 document.getElementById("clickBookBtn").disabled = false;
+                document.getElementById("iconImgBook").src = "images/NB-book.png"
             }
 
             if (points < 10 + trips ** 2) {
                 document.getElementById("libBtn").disabled = true;
+                document.getElementById("iconImgLibrary").src = "images/lock.png"
             } else {
                 document.getElementById("libBtn").disabled = false;
+                document.getElementById("iconImgLibrary").src = "images/Library.png"
             }
 
             if (points < 20 + shsTrips ** 2) {
                 document.getElementById("shsBtn").disabled = true;
+                document.getElementById("iconImgShs").src = "images/lock.png"
             } else {
                 document.getElementById("shsBtn").disabled = false;
+                document.getElementById("iconImgShs").src = "images/Second Hand Book Store.png"
             }
 
             if (points < 30 + rbsTrips ** 2) {
                 document.getElementById("rbsBtn").disabled = true;
+                document.getElementById("iconImgRbs").src = "images/lock.png"
             } else {
                 document.getElementById("rbsBtn").disabled = false;
             }
 
             if (points < 40 + onlineBooks ** 2) {
                 document.getElementById("onlineBtn").disabled = true;
+                document.getElementById("iconImgOnline").src = "images/lock.png"
             } else {
                 document.getElementById("onlineBtn").disabled = false;
             }
         }
 
-        setInterval(pointLoop, 1000)
+        setInterval(pointLoop, 2000)
     </script>
 </body>
 

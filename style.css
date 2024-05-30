@@ -58,6 +58,15 @@ body {
   float: left;
 }
 
+button:disabled div { 
+  cursor: not-allowed;
+  background-color: black;
+}
+
+button:disabled div:hover {
+  background-color: black;
+}
+
 .itembtn {
   background-color: transparent;
   border-width: 0px;
