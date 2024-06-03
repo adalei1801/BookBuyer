@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Book Buyer</title>
 </head>
 
@@ -13,6 +16,12 @@
     <div class="container">
         <div class="header">
             <h1>Book Buyer</h1>
+            <div id="volumeControl">
+            <button onclick="muteMusic ()" class="volumeBtn"><i class="fa-solid fa-volume-xmark"></i> Mute</button>
+            <button onclick="playMusic ()" class="volumeBtn"><i class="fa-solid fa-volume-off"></i> Unmute</button>
+            <button onclick="increaseVolume ()" class="volumeBtn"><i class="fa-solid fa-volume-high"></i> Volume Up</button>
+            <button onclick="decreaseVolume ()" class="volumeBtn"><i class="fa-solid fa-volume-low"></i> Volume Down</button>
+            </div>
         </div>
         <div class="clicker">
             <h2 id="pointTracker">0 Books</h2>
@@ -24,68 +33,99 @@
             <div class="options">
                 <button onclick="moreBooks ()" class="itembtn" id="clickBookBtn">
                     <div class="item">
-                    <div class="icon">
-                        <img src="images/NB-Book.png" alt="Blue Book"
-                    width="100px" id="iconImgBook">
-                    </div>
-                    <h3 id="extraBookTitle">Books per Click</h3>
-                    <p id="extraBooks">0 Extra Books</p>
-                    <p id="clickCost">Cost: 5 Books</p>
+                        <div class="icon">
+                            <img src="images/NB-Book.png" alt="Blue Book" width="100px" id="iconImgBook">
+                        </div>
+                        <h3 id="extraBookTitle">Books per Click</h3>
+                        <p id="extraBooks">0 Extra Books</p>
+                        <p id="clickCost">Cost: 5 Books</p>
                     </div>
                 </button>
-            <button onclick="takeTrip ()" class="itembtn" id="libBtn">
-                <div class="item">
-                    <div class="icon">
-                    <img src="images/Library.png" alt="Blue Book"
-                    width="100px" id="iconImgLibrary">
+                <button onclick="takeTrip ()" class="itembtn" id="libBtn">
+                    <div class="item">
+                        <div class="icon">
+                            <img src="images/Library.png" alt="Blue Book" width="100px" id="iconImgLibrary">
+                        </div>
+                        <h3 id="libTitle">Library</h3>
+                        <p id="libSec">1 Book/second</p>
+                        <p id="libTrip">0 Trips Taken</p>
+                        <p id="libCost">Cost: 10 Books</p>
                     </div>
-                    <h3 id="libTitle">Library</h3>
-                    <p id="libSec">1 Book/second</p>
-                    <p id="libTrip">0 Trips Taken</p>
-                    <p id="libCost">Cost: 10 Books</p>
-                </div>
-            </button>
-            <button onclick="takeShsTrip ()" class="itembtn" id="shsBtn">
-                <div class="item">
-                    <div class="icon">
-                        <img src="images/Second Hand Book Store.png" alt="Blue Book"
-                        width="100px" id="iconImgShs">
+                </button>
+                <button onclick="takeShsTrip ()" class="itembtn" id="shsBtn">
+                    <div class="item">
+                        <div class="icon">
+                            <img src="images/Second Hand Book Store.png" alt="Blue Book" width="100px" id="iconImgShs">
                         </div>
-                    <h3 id="shsTitle">Second Hand Book Store</h3>
-                    <p id="shsSec">3 Books/second</p>
-                    <p id="shsTrip">0 Trips Taken</p>
-                    <p id="shsCost">Cost: 20 Books</p>
-                </div>
-            </button>
-            <button onclick="takeRbsTrip ()" class="itembtn" id="rbsBtn">
-                <div class="item">
-                    <div class="icon">
-                        <img src="images/Retail Book Store.png" alt="Blue Book"
-                        width="100px" id="iconImgRbs">
+                        <h3 id="shsTitle">Second Hand Book Store</h3>
+                        <p id="shsSec">3 Books/second</p>
+                        <p id="shsTrip">0 Trips Taken</p>
+                        <p id="shsCost">Cost: 20 Books</p>
+                    </div>
+                </button>
+                <button onclick="takeRbsTrip ()" class="itembtn" id="rbsBtn">
+                    <div class="item">
+                        <div class="icon">
+                            <img src="images/Retail Book Store.png" alt="Blue Book" width="100px" id="iconImgRbs">
                         </div>
-                    <h3 id="rbsTitle">Retail Book Store</h3>
-                    <p id="rbsSec">10 Books/second</p>
-                    <p id="rbsTrip">0 Trips Taken</p>
-                    <p id="rbsCost">Cost: 30 Books</p>
-                </div>
-            </button>
-            <button onclick="buyOnline ()" class="itembtn" id="onlineBtn">
-                <div class="item">
-                    <div class="icon">
-                        <img src="images/Laptop.png" alt="Blue Book"
-                        width="100px" id="iconImgOnline">
+                        <h3 id="rbsTitle">Retail Book Store</h3>
+                        <p id="rbsSec">10 Books/second</p>
+                        <p id="rbsTrip">0 Trips Taken</p>
+                        <p id="rbsCost">Cost: 30 Books</p>
+                    </div>
+                </button>
+                <button onclick="buyOnline ()" class="itembtn" id="onlineBtn">
+                    <div class="item">
+                        <div class="icon">
+                            <img src="images/Laptop.png" alt="Blue Book" width="100px" id="iconImgOnline">
                         </div>
-                    <h3 id="onlineTitle">Online Store</h3>
-                    <p id="onlineSec">50 Books/second</p>
-                    <p id="onlineShop">0 Books Bought</p>
-                    <p id="onlineCost">Cost: 40 Books</p>
-                </div>
-            </button>
+                        <h3 id="onlineTitle">Online Store</h3>
+                        <p id="onlineSec">50 Books/second</p>
+                        <p id="onlineShop">0 Books Bought</p>
+                        <p id="onlineCost">Cost: 40 Books</p>
+                    </div>
+                </button>
             </div>
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
     <script>
+        let bgMusicVolume = 0.15
+
+        let bgMusic = new Howl({
+            src: ['audio/snowfall.ogg'],
+            autoplay: true,
+            volume: 0.15,
+            loop: true
+        })
+
+        function muteMusic() {
+            bgMusic.pause()
+        }
+
+        function playMusic() {
+            bgMusic.play()
+        }
+
+
+        function increaseVolume() {
+            bgMusicVolume = bgMusicVolume + 0.1
+            bgMusic.volume(bgMusicVolume)
+            if (bgMusicVolume >= 1.0) {
+                alert("Max Volume")
+            }
+        }
+
+        function decreaseVolume() {
+            bgMusicVolume = bgMusicVolume - 0.1
+            bgMusic.volume(bgMusicVolume)
+            if (bgMusicVolume <= 0) {
+                alert("Min Volume")
+            }
+        }
+
+
         let points = 0
         let pointTracker = document.getElementById("pointTracker")
         let clickBooks = 0
@@ -94,7 +134,7 @@
         let libTrip = document.getElementById("libTrip")
         let shsTrips = 0
         let shsTrip = document.getElementById("shsTrip")
-        let rbsTrips = 0 
+        let rbsTrips = 0
         let rbsTrip = document.getElementById("rbsTrip")
         let onlineBooks = 0
         let onlineShop = document.getElementById("onlineShop")
@@ -108,12 +148,12 @@
             points = points + 1
             pointTracker.innerText = points + ' Books'
             if (clickBooks > 0) {
-                points =  points + clickBooks
+                points = points + clickBooks
                 pointTracker.innerText = points + ' Books'
             }
         }
 
-        function moreBooks () {
+        function moreBooks() {
             let clickCosts = 5 + clickBooks ** 2
             if (points >= clickCosts) {
                 points = points - clickCosts
@@ -139,7 +179,7 @@
             }
         }
 
-        function takeShsTrip () {
+        function takeShsTrip() {
             let shsCosts = 20 + shsTrips ** 2
             if (points >= shsCosts) {
                 points = points - shsCosts
@@ -152,10 +192,10 @@
             }
         }
 
-        function takeRbsTrip () {
+        function takeRbsTrip() {
             let rbsCosts = 30 + rbsTrips ** 2
             if (points >= rbsCosts) {
-                points = points - rbsCosts 
+                points = points - rbsCosts
                 pointTracker.innerText = points + ' Books'
                 rbsTrips = rbsTrips + 1
                 rbsTrip.innerText = rbsTrips + ' Trips Taken'
@@ -165,7 +205,7 @@
             }
         }
 
-        function buyOnline () {
+        function buyOnline() {
             let onlineCosts = 40 + onlineBooks ** 2
             if (points >= onlineCosts) {
                 points = points - onlineCosts
@@ -178,7 +218,7 @@
             }
         }
 
-        function pointLoop () {
+        function pointLoop() {
             points = points + (1 * trips) + (3 * shsTrips) + (10 * rbsTrips) + (50 * onlineBooks)
             pointTracker.innerText = points + ' Books'
 
