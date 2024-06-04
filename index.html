@@ -17,6 +17,7 @@
         <div class="header">
             <h1>Book Buyer</h1>
             <div id="volumeControl">
+                <p id="volumeLevel">Volume: 20</p>
             <button onclick="muteMusic ()" class="volumeBtn"><i class="fa-solid fa-volume-xmark"></i> Mute</button>
             <button onclick="playMusic ()" class="volumeBtn"><i class="fa-solid fa-volume-off"></i> Unmute</button>
             <button onclick="increaseVolume ()" class="volumeBtn"><i class="fa-solid fa-volume-high"></i> Volume Up</button>
@@ -25,13 +26,16 @@
         </div>
         <div class="clicker">
             <h2 id="pointTracker">0 Books</h2>
-            <button onclick="increasePoints ()" id="clickerbtn"><img src="images/NB-Book.png" alt="Blue Book"
+            <button onclick="increasePoints (), turnPage ()" id="clickerbtn"><img src="images/NB-Book.png" alt="Blue Book"
                     width="250px"></button>
+                    <div>
+                        <p id="booksPer">0 Books per 2 Seconds</p>
+                    </div>
         </div>
         <div class="store">
             <h2>Resource Shelf</h2>
             <div class="options">
-                <button onclick="moreBooks ()" class="itembtn" id="clickBookBtn">
+                <button onclick="moreBooks (), flipBook ()" class="itembtn" id="clickBookBtn">
                     <div class="item">
                         <div class="icon">
                             <img src="images/NB-Book.png" alt="Blue Book" width="100px" id="iconImgBook">
@@ -41,46 +45,46 @@
                         <p id="clickCost">Cost: 5 Books</p>
                     </div>
                 </button>
-                <button onclick="takeTrip ()" class="itembtn" id="libBtn">
+                <button onclick="takeTrip (), librarySound ()" class="itembtn" id="libBtn">
                     <div class="item">
                         <div class="icon">
                             <img src="images/Library.png" alt="Blue Book" width="100px" id="iconImgLibrary">
                         </div>
                         <h3 id="libTitle">Library</h3>
-                        <p id="libSec">1 Book/second</p>
+                        <p id="libSec">1 Book/2 seconds</p>
                         <p id="libTrip">0 Trips Taken</p>
                         <p id="libCost">Cost: 10 Books</p>
                     </div>
                 </button>
-                <button onclick="takeShsTrip ()" class="itembtn" id="shsBtn">
+                <button onclick="takeShsTrip (), secondSound ()" class="itembtn" id="shsBtn">
                     <div class="item">
                         <div class="icon">
                             <img src="images/Second Hand Book Store.png" alt="Blue Book" width="100px" id="iconImgShs">
                         </div>
                         <h3 id="shsTitle">Second Hand Book Store</h3>
-                        <p id="shsSec">3 Books/second</p>
+                        <p id="shsSec">3 Books/2 seconds</p>
                         <p id="shsTrip">0 Trips Taken</p>
                         <p id="shsCost">Cost: 20 Books</p>
                     </div>
                 </button>
-                <button onclick="takeRbsTrip ()" class="itembtn" id="rbsBtn">
+                <button onclick="takeRbsTrip (), retailSound ()" class="itembtn" id="rbsBtn">
                     <div class="item">
                         <div class="icon">
                             <img src="images/Retail Book Store.png" alt="Blue Book" width="100px" id="iconImgRbs">
                         </div>
                         <h3 id="rbsTitle">Retail Book Store</h3>
-                        <p id="rbsSec">10 Books/second</p>
+                        <p id="rbsSec">10 Books/2 seconds</p>
                         <p id="rbsTrip">0 Trips Taken</p>
                         <p id="rbsCost">Cost: 30 Books</p>
                     </div>
                 </button>
-                <button onclick="buyOnline ()" class="itembtn" id="onlineBtn">
+                <button onclick="buyOnline (), compSound ()" class="itembtn" id="onlineBtn">
                     <div class="item">
                         <div class="icon">
                             <img src="images/Laptop.png" alt="Blue Book" width="100px" id="iconImgOnline">
                         </div>
                         <h3 id="onlineTitle">Online Store</h3>
-                        <p id="onlineSec">50 Books/second</p>
+                        <p id="onlineSec">50 Books/2 seconds</p>
                         <p id="onlineShop">0 Books Bought</p>
                         <p id="onlineCost">Cost: 40 Books</p>
                     </div>
@@ -91,40 +95,111 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
     <script>
-        let bgMusicVolume = 0.15
+        let musicVolume = 0.20
+        let volumeLevel = document.getElementById("volumeLevel")
 
         let bgMusic = new Howl({
             src: ['audio/snowfall.ogg'],
             autoplay: true,
-            volume: 0.15,
+            volume: musicVolume,
             loop: true
         })
 
+        let clickerBookSound = new Howl ({
+            src: ['audio/pageturn.wav'],
+            autoplay: false,
+            volume: musicVolume,
+            loop: false
+        }) 
+
+        let extraBookSound = new Howl ({
+            src: ['audio/flipbook.wav'],
+            autoplay: false,
+            volume: musicVolume,
+            loop: false
+        })
+
+        let libSound = new Howl ({
+            src: ['audio/library.ogg'],
+            autoplay: false,
+            volume: musicVolume,
+            loop: false
+        })
+
+        let shsSound = new Howl ({
+            src: ['audio/secondbook.ogg'],
+            autoplay: false,
+            volume: musicVolume,
+            loop: false
+        })
+
+        let rbsSound = new Howl ({
+            src: ['audio/retailbook.ogg'],
+            autoplay: false,
+            volume: musicVolume,
+            loop: false
+        })
+
+        let onlineSound = new Howl ({
+            src: ['audio/onlinebook.ogg'],
+            autoplay: false,
+            volume: musicVolume,
+            loop: false
+        })
+
         function muteMusic() {
-            bgMusic.pause()
+            Howler.mute(true)
+            volumeLevel.innerText = 'Volume: 0'
         }
 
         function playMusic() {
-            bgMusic.play()
+            Howler.mute(false)
+            Howler.volume(musicVolume)
+            volumeLevel.innerText = 'Volume: ' + (musicVolume.toFixed(1) * 100)
         }
 
 
         function increaseVolume() {
-            bgMusicVolume = bgMusicVolume + 0.1
-            bgMusic.volume(bgMusicVolume)
-            if (bgMusicVolume >= 1.0) {
+            musicVolume = musicVolume + 0.1
+            Howler.volume(musicVolume + 0.1)
+            volumeLevel.innerText = 'Volume: ' + (musicVolume.toFixed(1) * 100)
+            if (musicVolume >= 1.0) {
                 alert("Max Volume")
             }
         }
 
         function decreaseVolume() {
-            bgMusicVolume = bgMusicVolume - 0.1
-            bgMusic.volume(bgMusicVolume)
-            if (bgMusicVolume <= 0) {
+            musicVolume = musicVolume - 0.1
+            Howler.volume(musicVolume)
+            volumeLevel.innerText = 'Volume: ' + (musicVolume.toFixed(1) * 100)
+            if (musicVolume <= 0) {
                 alert("Min Volume")
             }
         }
 
+        function turnPage () {
+            clickerBookSound.play()
+        }
+
+        function flipBook () {
+            extraBookSound.play()
+        }
+
+        function librarySound () {
+            libSound.play()
+        }
+
+        function secondSound () {
+            shsSound.play()
+        }
+
+        function retailSound () {
+            rbsSound.play()
+        }
+
+        function compSound () {
+            onlineSound.play()
+        }
 
         let points = 0
         let pointTracker = document.getElementById("pointTracker")
@@ -143,6 +218,10 @@
         let shsCosts = document.getElementById("shsCost")
         let rbsCosts = document.getElementById("rbsCost")
         let onlineCosts = document.getElementById("onlineCost")
+        let libSecs = document.getElementById("libSec")
+        let shsSecs = document.getElementById('shsSec')
+        let rbsSecs = document.getElementById("rbsSec")
+        let onlineSecs = document.getElementById('onlineSec')
 
         function increasePoints() {
             points = points + 1
@@ -172,6 +251,8 @@
                 points = points - 10
                 pointTracker.innerText = points + ' Books'
                 trips = trips + 1
+                libSecs = trips
+                libSec.innerText = libSecs + ' Books/2 seconds'
                 libTrip.innerText = trips + ' Trips Taken'
                 libCost.innerText = "Cost: " + (10 + trips ** 2) + " Books"
             } else {
@@ -185,6 +266,8 @@
                 points = points - shsCosts
                 pointTracker.innerText = points + ' Books'
                 shsTrips = shsTrips + 1
+                shsSecs = shsTrips * 3
+                shsSec.innerText = shsSecs + ' Books/2 seconds'
                 shsTrip.innerText = shsTrips + ' Trips Taken'
                 shsCost.innerText = "Cost: " + (20 + shsTrips ** 2) + " Books"
             } else {
@@ -198,6 +281,8 @@
                 points = points - rbsCosts
                 pointTracker.innerText = points + ' Books'
                 rbsTrips = rbsTrips + 1
+                rbsSecs = rbsTrips * 10
+                rbsSec.innerText = rbsSecs + ' Books/2 seconds'
                 rbsTrip.innerText = rbsTrips + ' Trips Taken'
                 rbsCost.innerText = "Costs: " + (30 + rbsTrips ** 2) + " Books"
             } else {
@@ -211,6 +296,8 @@
                 points = points - onlineCosts
                 pointTracker.innerText = points + ' Books'
                 onlineBooks = onlineBooks + 1
+                onlineSecs = onlineBooks * 50
+                onlineSec.innerText = onlineSecs + ' Books/2 seconds'
                 onlineShop.innerText = onlineBooks + ' Books Bought'
                 onlineCost.innerText = "Cost: " + (40 + onlineBooks ** 2) + " Books"
             } else {
@@ -251,6 +338,7 @@
                 document.getElementById("iconImgRbs").src = "images/lock.png"
             } else {
                 document.getElementById("rbsBtn").disabled = false;
+                document.getElementById("iconImgRbs").src = "images/Retail Book Store.png"
             }
 
             if (points < 40 + onlineBooks ** 2) {
@@ -258,6 +346,7 @@
                 document.getElementById("iconImgOnline").src = "images/lock.png"
             } else {
                 document.getElementById("onlineBtn").disabled = false;
+                document.getElementById("iconImgOnline").src = "images/Laptop.png"
             }
         }
 
