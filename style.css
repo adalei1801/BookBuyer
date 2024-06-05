@@ -11,7 +11,7 @@
   }
   
   .header { grid-area: header;
-    background-color: #0090c1; 
+    background-color: #3d9bf9; 
     }
   
   .clicker { grid-area: clicker; 
@@ -20,7 +20,7 @@
     }
   
   .store { grid-area: store; 
-    background-color: #3185e0;
+    background-color: #79b4f3;
     border-left: black;
     }
 
@@ -111,6 +111,19 @@ button:disabled div:hover {
 #volumeControl {
   text-align: center;
   margin-bottom: 10px;
+}
+
+#bookTracker {
+  padding: 5px;
+  margin-inline: 120px;
+  text-align: center;
+  background-color: #E1D9B5;
+  border: 2px solid black;
+  border-radius: 2px;
+}
+
+#bookTracker:hover {
+  background-color: bisque;
 }
 
 button img {

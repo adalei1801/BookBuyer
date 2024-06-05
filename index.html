@@ -28,8 +28,8 @@
             <h2 id="pointTracker">0 Books</h2>
             <button onclick="increasePoints (), turnPage ()" id="clickerbtn"><img src="images/NB-Book.png" alt="Blue Book"
                     width="250px"></button>
-                    <div>
-                        <p id="booksPer">0 Books per 2 Seconds</p>
+                    <div id="booksEarned">
+                        <p id="bookTracker">0 Books per Second</p>
                     </div>
         </div>
         <div class="store">
@@ -45,13 +45,13 @@
                         <p id="clickCost">Cost: 5 Books</p>
                     </div>
                 </button>
-                <button onclick="takeTrip (), librarySound ()" class="itembtn" id="libBtn">
+                <button onclick="takeTrip (), librarySound (), bookMeter ()" class="itembtn" id="libBtn">
                     <div class="item">
                         <div class="icon">
                             <img src="images/Library.png" alt="Blue Book" width="100px" id="iconImgLibrary">
                         </div>
                         <h3 id="libTitle">Library</h3>
-                        <p id="libSec">1 Book/2 seconds</p>
+                        <p id="libSec">1 Book/second</p>
                         <p id="libTrip">0 Trips Taken</p>
                         <p id="libCost">Cost: 10 Books</p>
                     </div>
@@ -62,7 +62,7 @@
                             <img src="images/Second Hand Book Store.png" alt="Blue Book" width="100px" id="iconImgShs">
                         </div>
                         <h3 id="shsTitle">Second Hand Book Store</h3>
-                        <p id="shsSec">3 Books/2 seconds</p>
+                        <p id="shsSec">3 Books/second</p>
                         <p id="shsTrip">0 Trips Taken</p>
                         <p id="shsCost">Cost: 20 Books</p>
                     </div>
@@ -73,7 +73,7 @@
                             <img src="images/Retail Book Store.png" alt="Blue Book" width="100px" id="iconImgRbs">
                         </div>
                         <h3 id="rbsTitle">Retail Book Store</h3>
-                        <p id="rbsSec">10 Books/2 seconds</p>
+                        <p id="rbsSec">10 Books/second</p>
                         <p id="rbsTrip">0 Trips Taken</p>
                         <p id="rbsCost">Cost: 30 Books</p>
                     </div>
@@ -84,7 +84,7 @@
                             <img src="images/Laptop.png" alt="Blue Book" width="100px" id="iconImgOnline">
                         </div>
                         <h3 id="onlineTitle">Online Store</h3>
-                        <p id="onlineSec">50 Books/2 seconds</p>
+                        <p id="onlineSec">50 Books/second</p>
                         <p id="onlineShop">0 Books Bought</p>
                         <p id="onlineCost">Cost: 40 Books</p>
                     </div>
@@ -158,13 +158,13 @@
             volumeLevel.innerText = 'Volume: ' + (musicVolume.toFixed(1) * 100)
         }
 
-
         function increaseVolume() {
             musicVolume = musicVolume + 0.1
             Howler.volume(musicVolume + 0.1)
             volumeLevel.innerText = 'Volume: ' + (musicVolume.toFixed(1) * 100)
             if (musicVolume >= 1.0) {
                 alert("Max Volume")
+                volumeLevel.innerText = 'Volume: 100'
             }
         }
 
@@ -174,6 +174,7 @@
             volumeLevel.innerText = 'Volume: ' + (musicVolume.toFixed(1) * 100)
             if (musicVolume <= 0) {
                 alert("Min Volume")
+                volumeLevel.innerText = 'Volume: 0'
             }
         }
 
@@ -218,10 +219,15 @@
         let shsCosts = document.getElementById("shsCost")
         let rbsCosts = document.getElementById("rbsCost")
         let onlineCosts = document.getElementById("onlineCost")
-        let libSecs = document.getElementById("libSec")
-        let shsSecs = document.getElementById('shsSec')
-        let rbsSecs = document.getElementById("rbsSec")
-        let onlineSecs = document.getElementById('onlineSec')
+        let libSecs = 0
+        let libSec = document.getElementById("libSec")
+        let shsSecs = 0
+        let shsSec = document.getElementById('shsSec')
+        let rbsSecs = 0
+        let rbsSec = document.getElementById("rbsSec")
+        let onlineSecs = 0
+        let onlineSec = document.getElementById('onlineSec')
+        let bookTracker = document.getElementById("bookTracker")
 
         function increasePoints() {
             points = points + 1
@@ -252,11 +258,15 @@
                 pointTracker.innerText = points + ' Books'
                 trips = trips + 1
                 libSecs = trips
-                libSec.innerText = libSecs + ' Books/2 seconds'
+                libSec.innerText = libSecs + ' Books/second'
                 libTrip.innerText = trips + ' Trips Taken'
                 libCost.innerText = "Cost: " + (10 + trips ** 2) + " Books"
             } else {
                 alert("You do not have enough books")
+            } 
+
+            if (libSecs == 1) {
+                libSec.innerText = '1 Book/second'
             }
         }
 
@@ -266,8 +276,8 @@
                 points = points - shsCosts
                 pointTracker.innerText = points + ' Books'
                 shsTrips = shsTrips + 1
-                shsSecs = shsTrips * 3
-                shsSec.innerText = shsSecs + ' Books/2 seconds'
+                shsSecs = (shsTrips * 3)
+                shsSec.innerText = shsSecs + ' Books/second'
                 shsTrip.innerText = shsTrips + ' Trips Taken'
                 shsCost.innerText = "Cost: " + (20 + shsTrips ** 2) + " Books"
             } else {
@@ -281,8 +291,8 @@
                 points = points - rbsCosts
                 pointTracker.innerText = points + ' Books'
                 rbsTrips = rbsTrips + 1
-                rbsSecs = rbsTrips * 10
-                rbsSec.innerText = rbsSecs + ' Books/2 seconds'
+                rbsSecs = (rbsTrips * 10)
+                rbsSec.innerText = rbsSecs + ' Books/second'
                 rbsTrip.innerText = rbsTrips + ' Trips Taken'
                 rbsCost.innerText = "Costs: " + (30 + rbsTrips ** 2) + " Books"
             } else {
@@ -296,13 +306,18 @@
                 points = points - onlineCosts
                 pointTracker.innerText = points + ' Books'
                 onlineBooks = onlineBooks + 1
-                onlineSecs = onlineBooks * 50
-                onlineSec.innerText = onlineSecs + ' Books/2 seconds'
+                onlineSecs = (onlineBooks * 50)
+                onlineSec.innerText = onlineSecs + ' Books/second'
                 onlineShop.innerText = onlineBooks + ' Books Bought'
                 onlineCost.innerText = "Cost: " + (40 + onlineBooks ** 2) + " Books"
             } else {
                 alert("You do not have enough books")
             }
+        }
+
+        function bookMeter () {
+            booksPerSecs = (libSecs + shsSecs + rbsSecs + onlineSecs)
+            bookTracker.innerText = booksPerSecs + ' Books per Second'
         }
 
         function pointLoop() {
@@ -350,7 +365,8 @@
             }
         }
 
-        setInterval(pointLoop, 2000)
+        setInterval(pointLoop, 1000)
+        setInterval(bookMeter)
     </script>
 </body>
 
