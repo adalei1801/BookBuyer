@@ -21,7 +21,6 @@
   
   .store { grid-area: store; 
     background-color: #79b4f3;
-    border-left: black;
     }
 
 
@@ -38,6 +37,7 @@
 h1 {
   text-align: center;
   margin-top: 20px;
+  font-size: 35px;
 }
 
 h2 {
@@ -51,7 +51,6 @@ body {
 .options {
   height: 400px;
   overflow-y: scroll;
-  border-width: 10px;
 }
 
 .icon {
@@ -62,12 +61,14 @@ body {
   background-color: transparent;
   border-width: 0px;
   margin: auto;
-  font-size: 15px;
+  font-size: 17px;
   font-family: 'Courier New', Courier, monospace;
+  padding: 5px;
 }
 
 .volumeBtn:hover {
   background-color: #B8E1FF;
+  border-radius: 2px;
 }
 
 button:disabled div { 
@@ -111,6 +112,12 @@ button:disabled div:hover {
 #volumeControl {
   text-align: center;
   margin-bottom: 10px;
+  font-size: large;
+}
+
+#pointTracker {
+  padding: 5px;
+  margin-inline:120px;
 }
 
 #bookTracker {

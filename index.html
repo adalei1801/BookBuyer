@@ -17,8 +17,8 @@
         <div class="header">
             <h1>Book Buyer</h1>
             <div id="volumeControl">
-                <p id="volumeLevel">Volume: 20</p>
-            <button onclick="muteMusic ()" class="volumeBtn"><i class="fa-solid fa-volume-xmark"></i> Mute</button>
+                <p id="volumeLevel">Volume: 10</p>
+            <button onclick="muteMusic ()" class="volumeBtn" id="muteBtn"><i class="fa-solid fa-volume-xmark"></i> Mute</button>
             <button onclick="playMusic ()" class="volumeBtn"><i class="fa-solid fa-volume-off"></i> Unmute</button>
             <button onclick="increaseVolume ()" class="volumeBtn"><i class="fa-solid fa-volume-high"></i> Volume Up</button>
             <button onclick="decreaseVolume ()" class="volumeBtn"><i class="fa-solid fa-volume-low"></i> Volume Down</button>
@@ -26,7 +26,7 @@
         </div>
         <div class="clicker">
             <h2 id="pointTracker">0 Books</h2>
-            <button onclick="increasePoints (), turnPage ()" id="clickerbtn"><img src="images/NB-Book.png" alt="Blue Book"
+            <button onclick="increasePoints (), turnPage ()" id="clickerbtn"><img src="images/NBBook.png" alt="Blue Book"
                     width="250px"></button>
                     <div id="booksEarned">
                         <p id="bookTracker">0 Books per Second</p>
@@ -38,10 +38,10 @@
                 <button onclick="moreBooks (), flipBook ()" class="itembtn" id="clickBookBtn">
                     <div class="item">
                         <div class="icon">
-                            <img src="images/NB-Book.png" alt="Blue Book" width="100px" id="iconImgBook">
+                            <img src="images/NBBook.png" alt="Blue Book" width="100px" id="iconImgBook">
                         </div>
                         <h3 id="extraBookTitle">Books per Click</h3>
-                        <p id="extraBooks">0 Extra Books</p>
+                        <p id="extraBooks">1 Book per Click</p>
                         <p id="clickCost">Cost: 5 Books</p>
                     </div>
                 </button>
@@ -95,8 +95,9 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
     <script>
-        let musicVolume = 0.20
+        let musicVolume = 10
         let volumeLevel = document.getElementById("volumeLevel")
+        let muteBtn = document.getElementById("muteBtn")
 
         let bgMusic = new Howl({
             src: ['audio/snowfall.ogg'],
@@ -147,35 +148,52 @@
             loop: false
         })
 
+        function muteBtnColor() {
+            if (musicVolume == 0) {
+                muteBtn.style.backgroundColor = '#B8E1FF'
+            } 
+            if (musicVolume > 0) {
+                muteBtn.style.backgroundColor = 'transparent'
+            }
+        }
+
         function muteMusic() {
             Howler.mute(true)
+            musicVolume = 0
             volumeLevel.innerText = 'Volume: 0'
+            muteBtnColor ()
         }
 
         function playMusic() {
             Howler.mute(false)
+            musicVolume = 10
             Howler.volume(musicVolume)
-            volumeLevel.innerText = 'Volume: ' + (musicVolume.toFixed(1) * 100)
+            volumeLevel.innerText = 'Volume: ' + musicVolume
+            muteBtnColor ()
         }
 
         function increaseVolume() {
-            musicVolume = musicVolume + 0.1
-            Howler.volume(musicVolume + 0.1)
-            volumeLevel.innerText = 'Volume: ' + (musicVolume.toFixed(1) * 100)
-            if (musicVolume >= 1.0) {
+            musicVolume = musicVolume + 10
+            Howler.volume(musicVolume / 100)
+            volumeLevel.innerText = 'Volume: ' +  musicVolume
+            if (musicVolume >= 100) {
                 alert("Max Volume")
                 volumeLevel.innerText = 'Volume: 100'
             }
+            muteBtnColor ()
         }
 
         function decreaseVolume() {
-            musicVolume = musicVolume - 0.1
-            Howler.volume(musicVolume)
-            volumeLevel.innerText = 'Volume: ' + (musicVolume.toFixed(1) * 100)
+            musicVolume = musicVolume - 10
+            Howler.volume(musicVolume / 100)
+            volumeLevel.innerText = 'Volume: ' + musicVolume
             if (musicVolume <= 0) {
                 alert("Min Volume")
                 volumeLevel.innerText = 'Volume: 0'
             }
+            muteBtnColor ()
+        
+
         }
 
         function turnPage () {
@@ -244,7 +262,7 @@
                 points = points - clickCosts
                 pointTracker.innerText = points + ' Books'
                 clickBooks = clickBooks + 1
-                extraBooks.innerText = clickBooks + ' Extra Books'
+                extraBooks.innerText = clickBooks + 1 + ' Books per Click'
                 clickCost.innerText = "Cost: " + (5 + clickBooks ** 2) + " Books"
             } else {
                 alert("You do not have enough books")
@@ -294,7 +312,7 @@
                 rbsSecs = (rbsTrips * 10)
                 rbsSec.innerText = rbsSecs + ' Books/second'
                 rbsTrip.innerText = rbsTrips + ' Trips Taken'
-                rbsCost.innerText = "Costs: " + (30 + rbsTrips ** 2) + " Books"
+                rbsCost.innerText = "Cost: " + (30 + rbsTrips ** 2) + " Books"
             } else {
                 alert("You do not have enough books")
             }
@@ -329,7 +347,7 @@
                 document.getElementById("iconImgBook").src = "images/lock.png"
             } else {
                 document.getElementById("clickBookBtn").disabled = false;
-                document.getElementById("iconImgBook").src = "images/NB-book.png"
+                document.getElementById("iconImgBook").src = "images/NBBook.png"
             }
 
             if (points < 10 + trips ** 2) {
