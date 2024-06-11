@@ -14,7 +14,14 @@
 
 <body>
     <div class="container">
-        <div class="header">
+        <div class="header" id="headArea">
+            <div class="dropdown" id="colorChange">
+                <button class="dropbtn" id="colorOptions">Change Game Color</button>
+                <div class="dropdowncontent">
+                <button onclick="blueGameColor ()" id="blueColor">Blue</button>
+                <button onclick="greenGameColor ()" id="greenColor">Green</button>
+                </div>
+            </div>
             <h1>Book Buyer</h1>
             <div id="volumeControl">
                 <p id="volumeLevel">Volume: 10</p>
@@ -24,15 +31,15 @@
             <button onclick="decreaseVolume ()" class="volumeBtn"><i class="fa-solid fa-volume-low"></i> Volume Down</button>
             </div>
         </div>
-        <div class="clicker">
+        <div class="clicker" id="clickerArea">
             <h2 id="pointTracker">0 Books</h2>
             <button onclick="increasePoints (), turnPage ()" id="clickerbtn"><img src="images/NBBook.png" alt="Blue Book"
-                    width="250px"></button>
+                    width="250px" id="clickerBtnIcon"></button>
                     <div id="booksEarned">
                         <p id="bookTracker">0 Books per Second</p>
                     </div>
         </div>
-        <div class="store">
+        <div class="store" id="storeArea">
             <h2>Resource Shelf</h2>
             <div class="options">
                 <button onclick="moreBooks (), flipBook ()" class="itembtn" id="clickBookBtn">
@@ -246,6 +253,11 @@
         let onlineSecs = 0
         let onlineSec = document.getElementById('onlineSec')
         let bookTracker = document.getElementById("bookTracker")
+        let clickerColor = document.getElementById("clickerArea")
+        let storeColor = document.getElementById('storeArea')
+        let headColor = document.getElementById('headArea')
+        let clickerBtn = document.getElementById('clickerBtnIcon')
+        let colorOptionBtn = document.getElementById('colorOptions')
 
         function increasePoints() {
             points = points + 1
@@ -255,6 +267,22 @@
                 pointTracker.innerText = points + ' Books'
             }
         }
+
+        function blueGameColor() {
+            clickerColor.style.backgroundColor = '#B8E1FF'
+            storeColor.style.backgroundColor = '#79b4f3'
+            headColor.style.backgroundColor = '#3d9bf9'
+            colorOptionBtn.style.backgroundColor = '#5ec1ff'
+            document.getElementById("clickerBtnIcon").src = "images/NBBook.png"
+        }
+
+        function greenGameColor() {
+            clickerColor.style.backgroundColor = "#B9E4BB"
+            storeColor.style.backgroundColor = '#73CC7A'
+            headColor.style.backgroundColor = '#31B04B'
+            colorOptionBtn.style.backgroundColor = '#8EFA80'
+            document.getElementById("clickerBtnIcon").src = "images/NBGreenBook.png"
+            }
 
         function moreBooks() {
             let clickCosts = 5 + clickBooks ** 2
