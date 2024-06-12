@@ -26,9 +26,9 @@
             <div id="volumeControl">
                 <p id="volumeLevel">Volume: 10</p>
             <button onclick="muteMusic ()" class="volumeBtn" id="muteBtn"><i class="fa-solid fa-volume-xmark"></i> Mute</button>
-            <button onclick="playMusic ()" class="volumeBtn"><i class="fa-solid fa-volume-off"></i> Unmute</button>
-            <button onclick="increaseVolume ()" class="volumeBtn"><i class="fa-solid fa-volume-high"></i> Volume Up</button>
-            <button onclick="decreaseVolume ()" class="volumeBtn"><i class="fa-solid fa-volume-low"></i> Volume Down</button>
+            <button onclick="playMusic ()" class="volumeBtn" id="unmuteBtn"><i class="fa-solid fa-volume-off"></i> Unmute</button>
+            <button onclick="increaseVolume ()" class="volumeBtn" id="volUpBtn"><i class="fa-solid fa-volume-high"></i> Volume Up</button>
+            <button onclick="decreaseVolume ()" class="volumeBtn" id="volDownBtn"><i class="fa-solid fa-volume-low"></i> Volume Down</button>
             </div>
         </div>
         <div class="clicker" id="clickerArea">
@@ -258,6 +258,10 @@
         let headColor = document.getElementById('headArea')
         let clickerBtn = document.getElementById('clickerBtnIcon')
         let colorOptionBtn = document.getElementById('colorOptions')
+        let muteBttn = document.getElementById("muteBtn")
+        let unmuteBtn = document.getElementById("unmuteBtn")
+        let volUpBtn = document.getElementById("volUpBtn")
+        let volDownBtn = document.getElementById('volDownBtn')
 
         function increasePoints() {
             points = points + 1
@@ -273,6 +277,11 @@
             storeColor.style.backgroundColor = '#79b4f3'
             headColor.style.backgroundColor = '#3d9bf9'
             colorOptionBtn.style.backgroundColor = '#5ec1ff'
+            muteBttn.style.color = 'black'
+            unmuteBtn.style.color = 'black'
+            volUpBtn.style.color = 'black'
+            volDownBtn.style.color = 'black'
+            document.body.style.color = 'black'
             document.getElementById("clickerBtnIcon").src = "images/NBBook.png"
         }
 
@@ -281,6 +290,11 @@
             storeColor.style.backgroundColor = '#73CC7A'
             headColor.style.backgroundColor = '#31B04B'
             colorOptionBtn.style.backgroundColor = '#8EFA80'
+            muteBttn.style.color = 'black'
+            unmuteBtn.style.color = 'black'
+            volUpBtn.style.color = 'black'
+            volDownBtn.style.color = 'black'
+            document.body.style.color = 'black'
             document.getElementById("clickerBtnIcon").src = "images/NBGreenBook.png"
             }
 
