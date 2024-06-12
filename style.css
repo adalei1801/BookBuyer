@@ -201,3 +201,7 @@ button:disabled div:hover {
 button img {
  margin: auto;
 }
+
+body {
+  color: "black";
+}
