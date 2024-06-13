@@ -152,13 +152,25 @@ button:disabled div:hover {
   background-color: #8cef8e;
 }
 
+.dropdowncontent #yellowColor {
+  background-color: #F9DD54;
+  font-family: 'Courier New', Courier, monospace;
+
+}
+
 .dropdowncontent #yellowColor:hover {
   background-color: #FFFD7B;
 }
 
-.dropdowncontent button:hover {
-  background-color: #f1f1f1
+.dropdowncontent #redColor {
+  background-color: #EA4747;
+  font-family: 'Courier New', Courier, monospace;
 }
+
+.dropdowncontent #redColor:hover {
+  background-color: #f18181;
+}
+
 
 .dropdown:hover .dropdowncontent {
   display: block;
