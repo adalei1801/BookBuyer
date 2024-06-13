@@ -140,7 +140,7 @@ button:disabled div:hover {
 }
 
 .dropdowncontent #blueColor:hover {
-  background-color: #7cb8f4;
+  background-color: #7bb8f4;
 }
 
 .dropdowncontent #greenColor {
@@ -150,6 +150,10 @@ button:disabled div:hover {
 
 .dropdowncontent #greenColor:hover {
   background-color: #8cef8e;
+}
+
+.dropdowncontent #yellowColor:hover {
+  background-color: #FFFD7B;
 }
 
 .dropdowncontent button:hover {

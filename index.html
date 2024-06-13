@@ -23,8 +23,10 @@
             <div class="dropdown" id="colorChange">
                 <button class="dropbtn" id="colorOptions">Change Game Color</button>
                 <div class="dropdowncontent">
-                <button onclick="blueGameColor ()" id="blueColor">Blue</button>
+                <button onclick="redGameColor ()" id="redColor">Red</button>
+                <button onclick="yellowGameColor ()" id="yellowColor">Yellow</button>
                 <button onclick="greenGameColor ()" id="greenColor">Green</button>
+                <button onclick="blueGameColor ()" id="blueColor">Blue</button>
                 </div>
             </div>
             <h1>Book Buyer</h1>
@@ -286,12 +288,23 @@
             unmuteBtn.style.color = 'black'
             volUpBtn.style.color = 'black'
             volDownBtn.style.color = 'black'
-            document.body.style.color = 'black'
             document.getElementById("clickerBtnIcon").src = "images/NBBook.png"
         }
 
         function greenGameColor() {
-            clickerColor.style.backgroundColor = "#B9E4BB"
+            clickerColor.style.backgroundColor = "#FCEC88"
+            storeColor.style.backgroundColor = '#FFF159'
+            headColor.style.backgroundColor = '#FCCA46'
+            colorOptionBtn.style.backgroundColor = '#FFFD7B'
+            muteBttn.style.color = 'black'
+            unmuteBtn.style.color = 'black'
+            volUpBtn.style.color = 'black'
+            volDownBtn.style.color = 'black'
+            document.getElementById("clickerBtnIcon").src = "images/NBGreenBook.png"
+            }
+
+        function yellowGameColor() {
+            clickerColor.style.backgroundColor = "#FCEC88"
             storeColor.style.backgroundColor = '#73CC7A'
             headColor.style.backgroundColor = '#31B04B'
             colorOptionBtn.style.backgroundColor = '#8EFA80'
@@ -299,9 +312,20 @@
             unmuteBtn.style.color = 'black'
             volUpBtn.style.color = 'black'
             volDownBtn.style.color = 'black'
-            document.body.style.color = 'black'
-            document.getElementById("clickerBtnIcon").src = "images/NBGreenBook.png"
+            document.getElementById("clickerBtnIcon").src = "images/Yellow Book 2.png"
             }
+
+        function redGameColor() {
+            clickerColor.style.backgroundColor = '#FFADAD'
+            storeColor.style.backgroundColor = '#FF6060'
+            headColor.style.backgroundColor = '#F83838'
+            colorOptionBtn.style.backgroundColor = '#FF7070'
+            muteBttn.style.color = 'black'
+            unmuteBtn.style.color = 'black'
+            volUpBtn.style.color = 'black'
+            volDownBtn.style.color = 'black'
+            document.getElementById("clickerBtnIcon").src = "images/Red Book 2.png"
+        }
 
         function moreBooks() {
             let clickCosts = 5 + clickBooks ** 2
